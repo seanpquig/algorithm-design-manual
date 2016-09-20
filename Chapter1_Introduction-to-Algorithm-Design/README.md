@@ -2,7 +2,7 @@ Chapter 1 - Introduction to Algorithm Design
 ===
 
 ###Insertion Sort
-in Python
+in Python:
 
     def insertion_sort(list_s, len_s):
         for i in xrange(1, len_s):
