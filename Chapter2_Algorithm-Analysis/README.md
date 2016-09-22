@@ -109,3 +109,26 @@ in Python:
         return C
 
 - This algorithm is `O(xyx)` or `O(n^3)` assuming all three dimensions are the same.
+
+###Logarithms and Their Applications
+- binary search is an example for an `O(log(n))` algorithm.
+- the height of a binary search tree grows logarithmically with the number of leaf nodes.
+	- because of this they are fundamental to the design of fast data structures.
+- the number of bits needed to represent *n* unique items grows logarithmically with *n*.
+- `log(x * y) = log(x) + log(y)`
+- logarithms and exponents arise whenever things are repeatedly halved or doubled.
+
+###Logarithms and Their Applications
+- The base of a logarithm has not real impact on its growth rate.
+	- because logs can simply be converted by others with a constant factor.
+- Logarithms cut functions down to size.
+	- the growth rate of the log of any polynomial function is `O(lg(n)))` because the exponent gets pulled out as a constant multiplicative factor.
+
+###Advanced Analyisis (*)
+- **esoteric functions:**
+	- *Inverse Ackermann's function*
+	- `log(log(n))`
+	- `log(n)/log(log(n))`
+	- `log(n)^2`
+	- *Subliner Polynomials* like square root of *n*.
+	- `n ^ (1 + ϵ)` where *ϵ* is arbitrarily small.
