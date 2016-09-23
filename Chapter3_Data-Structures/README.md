@@ -20,7 +20,7 @@ Chapter 3 - Data Structures
 
 - **Linked Structures**
 	- Much of the space in linked structures must be devoted to pointers linking items.
-	- ***p** to denote the item pointed to by pointer **p**.
+	- **\*p** to denote the item pointed to by pointer **p**.
 	- **&x** to denote the the address/pointer of/to variable **x**.
 	- linked list in C:
 
