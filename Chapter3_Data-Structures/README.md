@@ -49,3 +49,92 @@ Chapter 3 - Data Structures
 
 ###Dictionaries
 - The *dictionary* permits access to data items by content.
+- The fastest data structure to support both operation A and B may not be the fastest structure to support either A or B.
+
+###Binary Search Trees
+- Binary search trees give us a balance of relatively fast search and flexible updates.
+- *Rooted binary tree* recursivley defineds as being either
+	1. Empty
+	2. consisting of node called root, together with two rooted binary trees calle dteh left and right subtrees
+- For any binary tree of *n* nodes, and any set of *n* keys, there is *exactly* one labeling that makes it a binary search tree.
+- Binary tree nodes have *left* and *right* pointer fields, and an optional *parent* pointer.
+- In Python:
+	- Tree structure
+
+		```
+		class BinaryTree:
+    		def __init__(self, item=None, left=None, right=None):
+        		self.item = item
+        		self.left = left
+        		self.right = right
+        ```
+    - Searching tree:
+    
+    	```
+    	def search(self, x):
+        	if not self.item:
+            	return None
+
+        	if self.item == x:
+            	return self
+        	if x < self.item:
+            	if self.left:
+                	return self.left.search(x)
+        	elif self.right:
+            	return self.right.search(x)
+
+        	return None
+    	```
+    
+    - Finding min or max element:
+    
+    	```
+    	def minimum(self):
+        	if not self.item:
+            	return None
+
+        	if not self.left:
+            	return self
+        	else:
+            	return self.left.minimum()
+
+    	def maximum(self):
+        	if not self.item:
+            	return None
+
+        	if not self.right:
+            	return self
+        	else:
+            	return self.right.maximum()
+    	```
+    	
+    - Traversing Tree
+  
+    	```
+    	def traverse(self, func=None):
+        	if self.left:
+            	self.left.traverse(func)
+        	if func:
+            	func(self.item)
+        	if self.right:
+            	self.right.traverse(func)
+    	```
+    
+    - Inserting Item:
+   
+   		```
+    	def insert(self, x):
+        	if not self.item:
+            	self = BinaryTree(x)
+
+        	if x < self.item:
+            	if self.left:
+                	self.left.insert(x)
+            	else:
+                	self.left = BinaryTree(x)
+        	else:
+            	if self.right:
+                	self.right.insert(x)
+            	else:
+                	self.right = BinaryTree(x)
+    	```
