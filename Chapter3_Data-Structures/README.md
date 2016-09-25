@@ -138,3 +138,76 @@ Chapter 3 - Data Structures
             	else:
                 	self.right = BinaryTree(x)
     	```
+
+- Using a binary tree, all 3 dictionary opertions (search, insert, delete) take `O(h)` or `O(log(n))` time.  Assuming the tree is perfectly balanced.
+- In practice, tree heights can range from lg(n) to n.
+- *Randomization* can ofte provide simple algorithms with a high probablitly of good performance.
+
+#####Balanced Search Trees
+- Balanced trees have insertion/deletion procedures that adjust the tree to keep its maximum height logarithmic.
+- Red-black trees and Splay trees are implementations of balanced tree data structures.
+
+###Priority Queue
+- Priority queues support 3 operations:
+	- *Insert(Q, x)* - Insert item x with key k, in the queue.
+	- *Find-Min(Q), Find-Max(Q)* - return pointer to item with smallest or largest key in the queue.
+	- *Delete-Min(Q), Delete-Max(Q)* - Remve the item from the queue whose key is the min or max.
+
+###Hashing and Strings
+- Hash tables are a very practical way to maintain a dictionary.
+	- they exploit the fact that looking an item up in an array takes constant time when you have its index.
+- Hash function maps keys to a large integer.
+	- Let *⍺* be the size of the alphabet on which a string *S* is written
+	- Let *char(c)* be a function that maps each symbol of the alphabet to a unique integer from 0 to *⍺* - 1
+	- `H(S) = Σ(i=0...|S|-1) ⍺^(|S| - (i+1)) * char(s_i))`
+		- treats characters of the string as "digits" in a base-⍺ number system.
+- These massive integers from a hash function need to be reduced to fit in the number of slots in a hash table (m).
+	- `H(S) mod m`
+- Uniform hash table distribution is aided by choosing *m* to be a large prime not too close to `2^i -1`.
+- *Chaining* is the easiest approach to resolving hash collisions.
+	- Represent Hash table as an array of m linked lists.
+		- *ith* list will contain all items that hash to *i*
+	- devotes considerable memory to pointers
+- *Open addressing* is another approach for resolving collisions.
+	- on insertion, if desired position is not empty, item is inserted in next open spot in the table (*sequential probing*).
+	- deletion in this scheme can get ugly, since removing an element might break a chain of insertions.
+	- *n* must be at most *m*
+- Pragmatically, a hash table is often the best data structure to maintain a dictionary.
+
+#####Efficient String Matching via Hashing
+- The primary data structure representing strings is an array of characters.
+- Substring pattern matching
+	- Simplest algorithm from prior chapter runs in O(nm) where n and m are lenths of text and sub-string pattern.
+	- Rabin-Karp algorithm
+		- linear *expected-time*
+		- Hash the pattern string *p*, and the *len(p)* substring starting from position i.
+		- Some algebra on hash functions of consecutive substrings leads us to:
+
+			```
+			H(S,j+1) = ⍺(H(S,j) - ⍺^(m-1)*char(s_j)) + char(s_j+m)
+			```
+
+		- Assuming minimal hash collisions, we get a very fast linear algorithm.
+
+#####Duplicate Detection Via Hashing
+- Key idea of hasing is to represent a large object (key, string) using a single number that can be manipulated in constant time.
+- Examples of problems with nice hashing solutions:
+	- Checking if a document exists in a large corpus
+	- Detecting plagirism by hashing all substrings of a given length in a corpus of docs
+	- Detecting file changes.
+
+- Worst-case bounds in hashing are usually dismal, but a proper hash function will avoid those.
+- Hashing is fundamental in randomized algorithms.
+	- can yield linear expected-time algos for `O(nlog(n))` or `O(n^2)` problems.
+
+###Specialized Data Structures
+- Basic data structures so far all represent an unstructured set of items so as to facilitate retrieval operations.
+- Some more specialized data structures:
+	- *String data structures* - Suffix trees/arrays can preprocess strings to make pattern matching operations faster.
+	- *Geometric data structures* - spatial structures like kd-trees organize points and regions by geometric location to support fast search.
+	- *Graph data structures* - typically represented using adjacency matrices or adjacency lists.
+	- *Set data structures* - typically represented with dictionaries.  Bit vectors or union-find structures are alternatives.
+
+###Chapter Notes
+- optimizing hash table performance is surprisingly complicated for a conceptually simple data structure.
+	- the importance of short runs in open addressing has let to more complicated schemes than sequential probing for collision resolution.
