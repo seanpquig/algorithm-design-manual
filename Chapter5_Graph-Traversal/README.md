@@ -21,3 +21,18 @@ Chapter 5 - Graph Traversal
 	- *isomorphism testing* - determining whether the topological structure for two graphs are identical if we ignore any labels.
 
 #####The Friendship Graph
+- Graph where vertices are people and edges indicate two people are fiends.
+- Also called *social networks*.
+- This graph is sparse
+- The *degree* of a vertex is the number of edges adjacent to it.
+- *Regular graph* - each vertex has the same degree.
+
+###Data Structures for Graphs
+- Two basic graph structures
+	1. *Adjacency Matrix*:  Represent G using and n x n matrix M, where M[i,j] = 1 if (i,j) is an edge in G, otherwise 0.
+		- fast answers to question "is (i,j) in G?"
+		- rapid updates for edge insertion and deletion
+		- uses excessive space for graphs with many vertices and relatively few edges.
+			- can save space packing multiple bits per word or simulating a triangular matrix on undirected graphs.
+			- still inhernetly quadratic on sparse graphs
+	2. *Adjacency Lists*:  
