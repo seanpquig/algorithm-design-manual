@@ -35,4 +35,10 @@ Chapter 5 - Graph Traversal
 		- uses excessive space for graphs with many vertices and relatively few edges.
 			- can save space packing multiple bits per word or simulating a triangular matrix on undirected graphs.
 			- still inhernetly quadratic on sparse graphs
-	2. *Adjacency Lists*:  
+		- n^2 traversal
+	2. *Adjacency Lists*:  more efficiently represent sparse graphs using linked lists to store the neighbors adjacent to each vertex.
+		- harder to verify whether a given edge (i,j) is in G, as we now need to search through a list
+		- (m + n) memory on small graphs
+		- (m + n) traversal
+
+- adjacency lists are the right data structure for most graph applications
