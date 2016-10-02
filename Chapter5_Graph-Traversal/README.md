@@ -1,13 +1,13 @@
 Chapter 5 - Graph Traversal
 ===
 
-- A graph *G = (V,E)* consists of a set of *vertices* V together with a set *E* of vertex pairs or *edges*.
+- A graph `G = (V,E)` consists of a set of *vertices* V together with a set *E* of vertex pairs or *edges*.
 - The key to using graph algorithms effectively lies in correctly modeling your problem, so you can take advantage of existing algorithms.
 	- Becoming familiar with many different graph problems is more important than understanding the details of particular graph algorithms.
 
 ###Flavors of Graphs
 
-- *Undirected vs. Directed* - a graph *G = (V,E)* is *undirected* if edge *(x,y)* being in *E* implies *(y,x)* is also in *E*.  Otherwise it is *directed*.
+- *Undirected vs. Directed* - a graph `G = (V,E)` is *undirected* if edge *(x,y)* being in *E* implies *(y,x)* is also in *E*.  Otherwise it is *directed*.
 - *Weighted vs. Unweighted* - Each edge in a *weighted* graph is assigned a numerical value or weight.  In *unweighted* graphs there is no cost distinction.
 - *Simple vs. Non-simple* - simple graphs avoid more complex structures like *self-loops* (edges like (x,x)) and *multiedges* in which an edge occurs multiple times in a graph.
 - *Sparse vs. Dense* - Sparse graphs have a small fraction of possible vertex pairs have edges.  Dense graphs usually have quadtratic number of edges, while sparse graphs are linear.
@@ -42,3 +42,52 @@ Chapter 5 - Graph Traversal
 		- (m + n) traversal
 
 - adjacency lists are the right data structure for most graph applications
+- In Python:
+	- Edge node:
+
+		```
+		class EdgeNode:
+    		def __init__(self, y, weight=1, next_node=None):
+        		self.y = y
+        		self.weight = weight
+        		self.next_node = next_node
+    	```
+    - Graph:
+
+		```
+		class Graph:
+    		def __init__(self, edges, degrees, num_vertices, num_edges, directed=False):
+        		self.edges = edges
+        		self.degrees = degrees
+        		self.num_vertices = num_vertices
+        		self.num_edges = num_edges
+        		self.directed = directed
+
+    		def show(self):
+        		for i in xrange(self.num_vertices):
+            		print('Vertex:', i)
+            		print('  Edges:', end='')
+            		edge = self.edges[i]
+            		while edge:
+                		print('', edge.y, end='')
+                		edge = edge.next_node
+            		print('')
+
+    		def insert_edge(self, x, y, directed=False):
+        		edge = EdgeNode(y, next_node=self.edges[x])
+        		self.edges[x] = edge
+        		self.degrees[x] += 1
+
+        		if not directed:
+            		self.insert_edge(y, x, True)
+        		else:
+            		self.num_edges += 1
+    	```
+    - Graph initilization function:
+
+    	```
+    	def initialize_graph(num_vertices=10, directed=False):
+    		graph = Graph([None] * num_vertices, [0] * num_vertices, num_vertices, 0, directed)
+    		return graph
+    	```
+      
