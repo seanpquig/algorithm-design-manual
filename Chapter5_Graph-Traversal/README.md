@@ -90,4 +90,79 @@ Chapter 5 - Graph Traversal
     		graph = Graph([None] * num_vertices, [0] * num_vertices, num_vertices, 0, directed)
     		return graph
     	```
-      
+ 
+###Data Structures for Graphs
+- Visiting every edge and vertex in a graph systematically, is perhaps the most fundamental graph problem.
+- Key idea behind graph traversal is to mark each vertex when its visited and keep track of what we have not yet completely explored.
+	- Each vertex will exist in one of three states:
+		- **undiscovered** - the vertex is in its inital, virgin state
+		- **discovered** - the vertex has been found, but all incident edges have not been checked yet
+		- **processed** - the vertex after we have visited all its incident edges
+	- transitions from *undiscovered* => *discovered* => *processsed*
+
+###Breadth-First Search
+- In BFS on an undirected graph, we assign a direction to each edge, from the discover *u* to the discovered *v*.
+	- we denote *u* to be the parent of *v*.
+	- each node has exactly one parent, except for the root.
+	- this tree of parents defines the shortest path from the root to every other node in the tree.
+		- makes BFS very useful in shortest path problems.
+- In Python:
+	- these methods were added to the previously implemented `Graph` class
+
+		```
+		def bfs(self, start):
+        	"""
+        	Breadth-First Search implmentation
+        	start: index of root vertex to being searching from
+        	return: parents array to be used for finding shortest paths
+        	"""
+        	processed = [False] * self.num_vertices
+        	discovered = [False] * self.num_vertices
+        	parents = [-1] * self.num_vertices
+
+        	# queue of vertices to process
+        	queue = [start]
+        	discovered[start] = True
+
+        	while len(queue) > 0:
+            	v = queue.pop()
+            	self.process_vertex_early(v)
+            	processed[v] = True
+            	edge = self.edges[v]
+            	while edge:
+                	y = edge.y
+                	if (not processed[y]) or self.directed:
+                    	self.process_edge(v, y)
+                	if not discovered[y]:
+                    	queue.insert(0, y)
+                    	discovered[y] = True
+                    	parents[y] = v
+                	edge = edge.next_node
+
+            	self.process_vertex_late(v)
+
+        	return parents
+
+    	@staticmethod
+    	def process_vertex_early(v):
+        	pass
+
+    	@staticmethod
+    	def process_vertex_late(v):
+        	print('  processed vertex', v)
+
+    	@staticmethod
+    	def process_edge(x, y):
+        	print('  processed edge ({}, {})'.format(x, y))
+		```
+
+	- finding shortest path between `start` and `end` nodes give `parents` array from BFS with `start` as root.
+
+		```
+		def find_path(start, end, parents):
+    	if (start == end) or (end == -1):
+        	print(' ', start)
+    	else:
+        	find_path(start, parents[end], parents)
+        	print(' ', end)
+		```

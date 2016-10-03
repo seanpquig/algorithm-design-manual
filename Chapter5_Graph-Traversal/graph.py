@@ -37,19 +37,81 @@ class Graph:
         else:
             self.num_edges += 1
 
+    def bfs(self, start):
+        """
+        Breadth-First Search implmentation
+        start: index of root vertex to being searching from
+        return: parents array to be used for finding shortest paths
+        """
+        processed = [False] * self.num_vertices
+        discovered = [False] * self.num_vertices
+        parents = [-1] * self.num_vertices
+
+        # queue of vertices to process
+        queue = [start]
+        discovered[start] = True
+
+        while len(queue) > 0:
+            v = queue.pop()
+            self.process_vertex_early(v)
+            processed[v] = True
+            edge = self.edges[v]
+            while edge:
+                y = edge.y
+                if (not processed[y]) or self.directed:
+                    self.process_edge(v, y)
+                if not discovered[y]:
+                    queue.insert(0, y)
+                    discovered[y] = True
+                    parents[y] = v
+                edge = edge.next_node
+
+            self.process_vertex_late(v)
+
+        return parents
+
+    @staticmethod
+    def process_vertex_early(v):
+        pass
+
+    @staticmethod
+    def process_vertex_late(v):
+        print('  processed vertex', v)
+
+    @staticmethod
+    def process_edge(x, y):
+        print('  processed edge ({}, {})'.format(x, y))
+
 
 def initialize_graph(num_vertices=10, directed=False):
     graph = Graph([None] * num_vertices, [0] * num_vertices, num_vertices, 0, directed)
     return graph
 
 
+def find_path(start, end, parents):
+    if (start == end) or (end == -1):
+        print(' ', start)
+    else:
+        find_path(start, parents[end], parents)
+        print(' ', end)
+
+
+# Setup a graph to run algorithms
 graph = initialize_graph()
 # Randomly generate edges
 for i in xrange(graph.num_vertices):
     x = int(random.random() * graph.num_vertices)
     y = int(random.random() * graph.num_vertices)
-    graph.insert_edge(x, y)
+    if x != y:
+        graph.insert_edge(x, y)
 
 print('# vertices', graph.num_vertices)
 print('# edges:', graph.num_edges)
 graph.show()
+
+# Run BFS
+print('\nRunning Breadth-First Search...')
+parents = graph.bfs(0)
+
+print('\nShortest path between node 0 and node 9')
+find_path(0, 9, parents)
