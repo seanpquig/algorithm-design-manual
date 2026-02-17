@@ -6,7 +6,7 @@ Chapter 3 - Data Structures
 	2. Dictionaries
 	3. Priority Queues
 
-###Contiguous vs Linked data structures
+### Contiguous vs Linked data structures
 
 - *Contiguous*: composed of single slabs of memory (arrays, marticies, heaps, and hash tables)
 - *Linked*: composed of distinct chunks of memory bound together by pointers (lists, trees, and graph adjacency lists)
@@ -36,7 +36,7 @@ Chapter 3 - Data Structures
 	- random access of items is not as efficient.
 	- poorer memory locality and cache performance.
 
-###Stacks and Queues
+### Stacks and Queues
 - *Container* denotes a data structure that permits storage and retrieval *independent of content*.  By contrast, dictionaries retrieve based on key values or content.
 - Containers are distinguished by the retrieval orders they support.
 - 2 container types:
@@ -47,11 +47,11 @@ Chapter 3 - Data Structures
 		- generally trickier to implement than stacks
 	- both can be implemented with arrays or linked lists.
 
-###Dictionaries
+### Dictionaries
 - The *dictionary* permits access to data items by content.
 - The fastest data structure to support both operation A and B may not be the fastest structure to support either A or B.
 
-###Binary Search Trees
+### Binary Search Trees
 - Binary search trees give us a balance of relatively fast search and flexible updates.
 - *Rooted binary tree* recursivley defineds as being either
 	1. Empty
@@ -143,17 +143,17 @@ Chapter 3 - Data Structures
 - In practice, tree heights can range from lg(n) to n.
 - *Randomization* can ofte provide simple algorithms with a high probablitly of good performance.
 
-#####Balanced Search Trees
+#### Balanced Search Trees
 - Balanced trees have insertion/deletion procedures that adjust the tree to keep its maximum height logarithmic.
 - Red-black trees and Splay trees are implementations of balanced tree data structures.
 
-###Priority Queue
+### Priority Queue
 - Priority queues support 3 operations:
 	- *Insert(Q, x)* - Insert item x with key k, in the queue.
 	- *Find-Min(Q), Find-Max(Q)* - return pointer to item with smallest or largest key in the queue.
 	- *Delete-Min(Q), Delete-Max(Q)* - Remve the item from the queue whose key is the min or max.
 
-###Hashing and Strings
+### Hashing and Strings
 - Hash tables are a very practical way to maintain a dictionary.
 	- they exploit the fact that looking an item up in an array takes constant time when you have its index.
 - Hash function maps keys to a large integer.
@@ -174,7 +174,7 @@ Chapter 3 - Data Structures
 	- *n* must be at most *m*
 - Pragmatically, a hash table is often the best data structure to maintain a dictionary.
 
-#####Efficient String Matching via Hashing
+##### Efficient String Matching via Hashing
 - The primary data structure representing strings is an array of characters.
 - Substring pattern matching
 	- Simplest algorithm from prior chapter runs in O(nm) where n and m are lenths of text and sub-string pattern.
@@ -189,7 +189,7 @@ Chapter 3 - Data Structures
 
 		- Assuming minimal hash collisions, we get a very fast linear algorithm.
 
-#####Duplicate Detection Via Hashing
+##### Duplicate Detection Via Hashing
 - Key idea of hasing is to represent a large object (key, string) using a single number that can be manipulated in constant time.
 - Examples of problems with nice hashing solutions:
 	- Checking if a document exists in a large corpus
@@ -200,7 +200,7 @@ Chapter 3 - Data Structures
 - Hashing is fundamental in randomized algorithms.
 	- can yield linear expected-time algos for `O(nlog(n))` or `O(n^2)` problems.
 
-###Specialized Data Structures
+### Specialized Data Structures
 - Basic data structures so far all represent an unstructured set of items so as to facilitate retrieval operations.
 - Some more specialized data structures:
 	- *String data structures* - Suffix trees/arrays can preprocess strings to make pattern matching operations faster.
@@ -208,6 +208,6 @@ Chapter 3 - Data Structures
 	- *Graph data structures* - typically represented using adjacency matrices or adjacency lists.
 	- *Set data structures* - typically represented with dictionaries.  Bit vectors or union-find structures are alternatives.
 
-###Chapter Notes
+### Chapter Notes
 - optimizing hash table performance is surprisingly complicated for a conceptually simple data structure.
 	- the importance of short runs in open addressing has let to more complicated schemes than sequential probing for collision resolution.

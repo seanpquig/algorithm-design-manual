@@ -1,7 +1,7 @@
 Chapter 1 - Introduction to Algorithm Design
 ===
 
-###Insertion Sort
+### Insertion Sort
 in Python:
 
     def insertion_sort(list_s, len_s):
@@ -12,7 +12,7 @@ in Python:
                 j -= 1
 
 
-###Expressing Algorithms
+### Expressing Algorithms
 - Three common forms of algoritmhmic notation:
 
 	1. English
@@ -21,7 +21,7 @@ in Python:
 
 - The heart of any algorithm is an idea.  If that idea is not clearly expressed, you are using too low-levle a notation.
 
-###Demonstrating Incorrectness
+### Demonstrating Incorrectness
 - Good counter examples exhibit:
 	- Verifiability
 	- Simplicity
@@ -32,7 +32,7 @@ in Python:
 	- Go for a tie
 	- Seek extremes
 
-###Combinatorial Objects
+### Combinatorial Objects
 - Common structures
 	- **Permutations**: arrangements or orderings of items
 	- **Subsets**: selections from a set of items.  Order does not matter.

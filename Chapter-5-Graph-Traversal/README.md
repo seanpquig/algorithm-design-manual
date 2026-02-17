@@ -5,7 +5,7 @@ Chapter 5 - Graph Traversal
 - The key to using graph algorithms effectively lies in correctly modeling your problem, so you can take advantage of existing algorithms.
 	- Becoming familiar with many different graph problems is more important than understanding the details of particular graph algorithms.
 
-###Flavors of Graphs
+### Flavors of Graphs
 
 - *Undirected vs. Directed* - a graph `G = (V,E)` is *undirected* if edge *(x,y)* being in *E* implies *(y,x)* is also in *E*.  Otherwise it is *directed*.
 - *Weighted vs. Unweighted* - Each edge in a *weighted* graph is assigned a numerical value or weight.  In *unweighted* graphs there is no cost distinction.
@@ -20,14 +20,14 @@ Chapter 5 - Graph Traversal
 - *Labeled vs. Unlabeled* - Each vertex is assigned a unique name or identifier in a *labeled* graph.
 	- *isomorphism testing* - determining whether the topological structure for two graphs are identical if we ignore any labels.
 
-#####The Friendship Graph
+##### The Friendship Graph
 - Graph where vertices are people and edges indicate two people are fiends.
 - Also called *social networks*.
 - This graph is sparse
 - The *degree* of a vertex is the number of edges adjacent to it.
 - *Regular graph* - each vertex has the same degree.
 
-###Data Structures for Graphs
+### Data Structures for Graphs
 - Two basic graph structures
 	1. *Adjacency Matrix*:  Represent G using and n x n matrix M, where M[i,j] = 1 if (i,j) is an edge in G, otherwise 0.
 		- fast answers to question "is (i,j) in G?"
@@ -91,7 +91,7 @@ Chapter 5 - Graph Traversal
     		return graph
     	```
  
-###Data Structures for Graphs
+### Data Structures for Graphs
 - Visiting every edge and vertex in a graph systematically, is perhaps the most fundamental graph problem.
 - Key idea behind graph traversal is to mark each vertex when its visited and keep track of what we have not yet completely explored.
 	- Each vertex will exist in one of three states:
@@ -100,7 +100,7 @@ Chapter 5 - Graph Traversal
 		- **processed** - the vertex after we have visited all its incident edges
 	- transitions from *undiscovered* => *discovered* => *processsed*
 
-###Breadth-First Search
+### Breadth-First Search
 - In BFS on an undirected graph, we assign a direction to each edge, from the discover *u* to the discovered *v*.
 	- we denote *u* to be the parent of *v*.
 	- each node has exactly one parent, except for the root.
